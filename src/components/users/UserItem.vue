@@ -7,12 +7,17 @@
 
 <script>
 export default {
-  props: ['id', 'userName'],
-  emits: ['list-projects'],
-  methods: {
-    viewProjects() {
-      this.$emit('list-projects', this.id);
-    },
+  props: {
+    id: String,
+    userName: String,
+  },
+  setup(props, { emit }) {
+    const viewProjects = () => emit('list-projects', props.id);
+
+    return {
+      username: props.userName,
+      viewProjects,
+    };
   },
 };
 </script>
